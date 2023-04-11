@@ -1,7 +1,8 @@
 Rendering and building the website using a reproducible docker container.
 
-Geospatial data. 
+Geospatial data package as base (for my workflows).
 
+Change the path to your website directory.
 
 ```bash
 docker run --rm -p 8787:8787 -e PASSWORD=YOURNEWPASSWORD -v /PATH/TO/WEBSITE/DIRECTORY:/home/rstudio/DATA rocker/geospatial
@@ -25,14 +26,15 @@ install.packages("rayshader")
 install.packages("rnaturalearth")
 install.packages("rnaturalearthdata")
 
-### save based on the running container ID (e.g. 258aab99fd4b)
-#### saved as "rocker_geospatial_website"
+Save the *running* container to save all of your installed packages based on container ID (e.g. 258aab99fd4b) with the name "rocker_geospatial_website" as the name.
+
+```bash
 docker ps
 docker commit -m "rocker_geospatial_website" 258aab99fd4b rocker_geospatial_website
 docker image ls
+```
 
-### Use the following for day to day website rendering
-#### Call the name of the container
+Use the following for day to day website rendering using the name of the saved container.
 
 ```bash
 docker run --rm -p 8787:8787 -e PASSWORD=YOURNEWPASSWORD -v /PATH/TO/WEBSITE/DIRECTORY:/home/rstudio/DATA rocker_geospatial_website
